@@ -33,6 +33,7 @@ const domain = ref<IDomain>({
 /* functions */
 
 function save() {
+  domain.value.user = userStore.user.id;
   requestCreateDomainOfUser(domain.value, userStore.user.id).then((data) => {
     userDomainsStore.update().then(() => {
       router.push(getDomainPageUrl(data.data.id));
