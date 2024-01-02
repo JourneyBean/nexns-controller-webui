@@ -13,7 +13,7 @@ import {
 
 export function requestGetDomainsOfUser(userId: IUser["id"]) {
   return requestControllerApi<IDomain[]>("get", "domain", {
-    params: { user_id: userId },
+    params: { user: userId },
   });
 }
 
