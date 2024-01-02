@@ -66,12 +66,10 @@ function createZone() {
   newZoneId--;
 }
 
-function deleteZone(zone: IZone, index: number) {
-  requestDeleteZone(zone).then((_) => {
-    zones.value.splice(index, 1);
-    zones.value = [...zones.value];
-    // getZones(0);
-  });
+function deleteZone(index: number) {
+  zones.value.splice(index, 1);
+  zones.value = [...zones.value];
+  tabSelected.value = `zone-id-${zones.value[0]?.id}`;
 }
 
 /* hooks */
@@ -112,7 +110,7 @@ watch(route, () => {
 
         <el-popconfirm
           title="确认删除该区域？该区域的所有记录都将被删除！"
-          @confirm="deleteZone(zones[index], index)"
+          @confirm="deleteZone(index)"
         >
           <template #reference>
             <el-button type="danger">删除该区域</el-button>
