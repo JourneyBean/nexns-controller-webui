@@ -100,7 +100,7 @@ function deleteRecord(rrset: IRRsetDump, index: number) {
     >
       <div
         v-for="(rrset, index) in rrsets"
-        :key="rrset.name"
+        :key="rrset.id"
         class="flex flex-row space-x-4 rounded-lg pr-4 hover:bg-blue-500 hover:bg-opacity-10 items-center min-h-16"
       >
         <div>
