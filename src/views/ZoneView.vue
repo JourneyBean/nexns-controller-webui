@@ -5,7 +5,6 @@ import {
   IDomain,
   IZone,
   requestBatchPushZoneOfDomain,
-  requestDeleteZone,
   requestListZoneOfDomain,
   requestRetrieveDomain,
 } from "@/modules/name";
