@@ -56,7 +56,7 @@ setTimeout(() => {
         class="flex flex-row fixed top-0 left-0 w-full shadow-md items-center backdrop-blur-lg bg-white/50"
         style="z-index: 1000"
       >
-        <p class="grow text-lg font-bold">Mewwoof Name Service Control</p>
+        <p class="grow text-lg font-bold">NexNS Controller WebUI</p>
         <p class="text-sm text-gray-500">User ID: {{ userStore.user.id }}</p>
       </el-header>
 
