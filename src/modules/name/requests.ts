@@ -167,3 +167,9 @@ export function requestDeleteRecordData(recordData: IRecordData) {
 export function requestDumpDomain(domainId: IDomain["id"]) {
   return requestControllerApi<IDomainDump>("get", "dump", { pk: domainId });
 }
+
+/* publish domain */
+
+export function requestPublishDomain(domainId: IDomain["id"]) {
+  return requestControllerApi<null>("get", "publish", { pk: domainId });
+}

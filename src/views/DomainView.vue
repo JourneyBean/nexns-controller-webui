@@ -3,13 +3,14 @@ import { ref, watch } from "vue";
 import {
   IDomain,
   requestDeleteDomain,
+  requestPublishDomain,
   requestRetrieveDomain,
   requestUpdateDomain,
 } from "@/modules/name";
 import { useRoute, useRouter } from "vue-router";
 import { useUserDomainsStore } from "@/modules/name";
 import { getHomePageUrl } from "@/modules/route";
-import { ElButton, ElPopconfirm } from "element-plus";
+import { ElButton, ElMessage, ElPopconfirm } from "element-plus";
 import DomainForm from "./DomainForm.vue";
 
 /* stores */
@@ -38,6 +39,13 @@ function saveDomain() {
   });
 }
 
+function publishDomain() {
+  if (!domain.value) return;
+  requestPublishDomain(domain.value.id).then(() => {
+    ElMessage.success("成功发布域名");
+  });
+}
+
 function deleteDomain() {
   if (!domain.value) return;
   requestDeleteDomain(domain.value).then((_) => {
@@ -59,7 +67,12 @@ watch(route, () => {
     <h1 class="text-3xl">编辑域名 {{ domain?.domain }}</h1>
 
     <div class="pt-4">
-      <DomainForm v-if="domain" v-model="domain" @submit="saveDomain" />
+      <DomainForm
+        v-if="domain"
+        v-model="domain"
+        @submit="saveDomain"
+        @publish="publishDomain"
+      />
       <div v-else style="height: 300px"></div>
     </div>
 
