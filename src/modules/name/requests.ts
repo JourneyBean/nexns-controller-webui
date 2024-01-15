@@ -40,6 +40,13 @@ export function requestDeleteDomain(domain: IDomain) {
   return requestControllerApi<null>("delete", "domain", { pk: domain.id });
 }
 
+export function requestApplyDomain(domainId: IDomain["id"]) {
+  return requestControllerApi<null>("post", "domain", {
+    pk: domainId,
+    action: "apply",
+  });
+}
+
 /* zone */
 
 export function requestListZoneOfDomain(domainId: IDomain["id"]) {
@@ -166,10 +173,4 @@ export function requestDeleteRecordData(recordData: IRecordData) {
 
 export function requestDumpDomain(domainId: IDomain["id"]) {
   return requestControllerApi<IDomainDump>("get", "dump", { pk: domainId });
-}
-
-/* publish domain */
-
-export function requestPublishDomain(domainId: IDomain["id"]) {
-  return requestControllerApi<null>("get", "publish", { pk: domainId });
 }

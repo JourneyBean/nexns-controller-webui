@@ -3,7 +3,7 @@ import { ref, watch } from "vue";
 import {
   IDomain,
   requestDeleteDomain,
-  requestPublishDomain,
+  requestApplyDomain,
   requestRetrieveDomain,
   requestUpdateDomain,
 } from "@/modules/name";
@@ -39,9 +39,9 @@ function saveDomain() {
   });
 }
 
-function publishDomain() {
+function applyDomain() {
   if (!domain.value) return;
-  requestPublishDomain(domain.value.id).then(() => {
+  requestApplyDomain(domain.value.id).then(() => {
     ElMessage.success("成功发布域名");
   });
 }
@@ -71,7 +71,7 @@ watch(route, () => {
         v-if="domain"
         v-model="domain"
         @submit="saveDomain"
-        @publish="publishDomain"
+        @publish="applyDomain"
       />
       <div v-else style="height: 300px"></div>
     </div>

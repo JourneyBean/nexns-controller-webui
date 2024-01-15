@@ -1,10 +1,17 @@
 import axios, { AxiosRequestConfig } from "axios";
 import { IRequestConfig } from "./types";
 
-export function getControllerUrl(name: string, pk?: string | number) {
+export function getControllerUrl(
+  name: string,
+  pk?: string | number,
+  action?: string
+) {
   let url = `http://localhost:8000/api/v1/${name}/`;
   if (pk != null) {
-    return url + String(pk) + "/";
+    url = url + String(pk) + "/";
+  }
+  if (action != null) {
+    url = url + action + "/";
   }
   return url;
 }
@@ -20,7 +27,7 @@ export function requestControllerApi<T>(
 
   return axios.request<T>({
     method: method,
-    url: getControllerUrl(name, config?.pk),
+    url: getControllerUrl(name, config?.pk, config?.action),
     params: config?.params,
     data: config?.data,
   });
