@@ -11,6 +11,7 @@ import {
   getNewDomainPageUrl,
   getZonePageUrl,
   getRecordPageUrl,
+  getVariablePageUrl,
 } from "@/modules/route";
 import {
   ElContainer,
@@ -112,6 +113,7 @@ setTimeout(() => {
                   >记录管理</el-menu-item
                 >
               </el-sub-menu>
+
               <el-menu-item
                 index="add-domain"
                 class="text-gray-400"
@@ -122,7 +124,10 @@ setTimeout(() => {
               </el-menu-item>
             </el-sub-menu>
 
-            <el-menu-item index="manage-variables">
+            <el-menu-item
+              index="manage-variables"
+              @click="router.push(getVariablePageUrl())"
+            >
               <el-icon><Link /></el-icon>
               <span>别名管理</span>
             </el-menu-item>

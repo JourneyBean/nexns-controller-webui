@@ -7,6 +7,7 @@ const Domain = () => import("@/views/DomainView.vue");
 const NewDomain = () => import("@/views/DomainNewView.vue");
 const Zone = () => import("@/views/ZoneView.vue");
 const Record = () => import("@/views/RecordView.vue");
+const Variable = () => import("@/views/VariableView.vue");
 const NotFound = () => import("@/views/NotFound.vue");
 
 /* route definition */
@@ -31,6 +32,10 @@ export const routes: RouteRecordRaw[] = [
   {
     path: "/record/:id",
     component: Record,
+  },
+  {
+    path: "/variable",
+    component: Variable,
   },
   {
     path: "/:pathMatch(.*)*",

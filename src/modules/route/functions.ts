@@ -19,3 +19,7 @@ export function getRecordPageUrl(domainId: IDomain["id"]) {
 export function getZonePageUrl(domainId: IDomain["id"]) {
   return `/zone/${domainId}`;
 }
+
+export function getVariablePageUrl() {
+  return "/variable";
+}
