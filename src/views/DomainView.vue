@@ -41,9 +41,13 @@ function saveDomain() {
 
 function applyDomain() {
   if (!domain.value) return;
-  requestApplyDomain(domain.value.id).then(() => {
-    ElMessage.success("成功发布域名");
-  });
+  requestApplyDomain(domain.value.id)
+    .then(() => {
+      ElMessage.success("成功发布域名");
+    })
+    .catch((e) => {
+      ElMessage.error("发布失败" + String(e.response.data));
+    });
 }
 
 function deleteDomain() {
@@ -67,23 +71,25 @@ watch(route, () => {
     <h1 class="text-3xl">编辑域名 {{ domain?.domain }}</h1>
 
     <div class="pt-4">
-      <DomainForm
-        v-if="domain"
-        v-model="domain"
-        @submit="saveDomain"
-        @publish="applyDomain"
-      />
+      <DomainForm v-if="domain" v-model="domain" />
       <div v-else style="height: 300px"></div>
     </div>
 
+    <div class="pl-28">
+      <el-button type="primary" plain @click="saveDomain">仅保存</el-button>
+      <el-button type="success" plain @click="applyDomain"
+        >校验并发布</el-button
+      >
+    </div>
+
     <div>
-      <h2 class="text-lg pb-2">危险操作</h2>
+      <h2 class="text-lg py-2">危险操作</h2>
       <el-popconfirm
         title="确认删除域名？所有记录都将被删除！"
         @confirm="deleteDomain"
       >
         <template #reference>
-          <el-button type="danger">删除域名</el-button>
+          <el-button type="danger" plain>删除域名</el-button>
         </template>
       </el-popconfirm>
     </div>

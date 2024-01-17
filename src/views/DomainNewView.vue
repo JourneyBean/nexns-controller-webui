@@ -5,6 +5,7 @@ import { useRouter } from "vue-router";
 import { useUserStore } from "@/modules/user";
 import { useUserDomainsStore } from "@/modules/name";
 import { getDomainPageUrl } from "@/modules/route";
+import { ElButton } from "element-plus";
 import DomainForm from "./DomainForm.vue";
 
 /* stores */
@@ -48,6 +49,10 @@ function save() {
 
     <div class="pt-4">
       <DomainForm v-if="domain" v-model="domain" @submit="save" />
+    </div>
+
+    <div class="pl-28">
+      <el-button type="primary" plain>保存</el-button>
     </div>
   </div>
 </template>

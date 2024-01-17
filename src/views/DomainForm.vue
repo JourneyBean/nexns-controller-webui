@@ -1,12 +1,6 @@
 <script setup lang="ts">
 import { IDomain } from "@/modules/name";
-import {
-  ElForm,
-  ElFormItem,
-  ElInput,
-  ElButton,
-  ElInputNumber,
-} from "element-plus";
+import { ElForm, ElFormItem, ElInput, ElInputNumber } from "element-plus";
 import { computed } from "vue";
 
 /* props */
@@ -21,8 +15,6 @@ const props = defineProps<IProps>();
 
 const emit = defineEmits<{
   (e: "update:modelValue", value: IDomain): void;
-  (e: "submit"): void;
-  (e: "publish"): void;
 }>();
 
 const data = computed<IDomain>({
@@ -55,11 +47,6 @@ const data = computed<IDomain>({
 
     <el-form-item label="默认TTL">
       <el-input-number v-model="data.ttl" />
-    </el-form-item>
-
-    <el-form-item>
-      <el-button type="primary" @click="emit('submit')">保存</el-button>
-      <el-button type="success" @click="emit('publish')">发布</el-button>
     </el-form-item>
   </el-form>
 </template>
