@@ -79,7 +79,7 @@ function addRecord(rrset: IRRsetDump) {
     id: newId,
     rrset: 0,
     ttl: 3600,
-    data: "",
+    text: "",
     order: rrset.records.length + 1,
   });
   newId--;

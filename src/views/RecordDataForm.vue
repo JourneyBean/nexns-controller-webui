@@ -31,8 +31,8 @@ const record = computed({
   <div>
     <el-input
       v-if="['A', 'AAAA', 'CNAME', 'NS', 'SRV', 'SOA'].includes(props.type)"
-      v-model="record.data"
+      v-model="record.text"
     />
-    <el-input v-else v-model="record.data" :rows="3" type="textarea" />
+    <el-input v-else v-model="record.text" :rows="3" type="textarea" />
   </div>
 </template>

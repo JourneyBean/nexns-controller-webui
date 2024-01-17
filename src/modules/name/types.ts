@@ -43,7 +43,8 @@ export interface IRecordData {
   readonly id: number;
   rrset: IRRset["id"];
   ttl: number;
-  data: string;
+  text: string;
+  readonly val?: string;
   order: number;
   readonly created_at?: string;
   readonly updated_at?: string;
