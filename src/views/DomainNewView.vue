@@ -5,7 +5,7 @@ import { useRouter } from "vue-router";
 import { useUserStore } from "@/modules/user";
 import { useUserDomainsStore } from "@/modules/name";
 import { getDomainPageUrl } from "@/modules/route";
-import { ElButton } from "element-plus";
+import { ElButton, ElMessage } from "element-plus";
 import DomainForm from "./DomainForm.vue";
 
 /* stores */
@@ -36,9 +36,14 @@ const domain = ref<IDomain>({
 function save() {
   domain.value.user = userStore.user.id;
   requestCreateDomainOfUser(domain.value, userStore.user.id).then((data) => {
-    userDomainsStore.update().then(() => {
-      router.push(getDomainPageUrl(data.data.id));
-    });
+    userDomainsStore
+      .update()
+      .then(() => {
+        router.push(getDomainPageUrl(data.data.id));
+      })
+      .catch((e) => {
+        ElMessage.error("创建域名失败" + String(e.response.data));
+      });
   });
 }
 </script>

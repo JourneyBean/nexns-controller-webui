@@ -8,7 +8,13 @@ import {
   requestListZoneOfDomain,
   requestRetrieveDomain,
 } from "@/modules/name";
-import { ElTabs, ElTabPane, ElButton, ElPopconfirm } from "element-plus";
+import {
+  ElTabs,
+  ElTabPane,
+  ElButton,
+  ElPopconfirm,
+  ElMessage,
+} from "element-plus";
 import ZoneForm from "./ZoneForm.vue";
 
 /* stores */
@@ -43,9 +49,14 @@ function getZones(toId: number) {
 
 function saveZone() {
   if (!domain.value) return;
-  requestBatchPushZoneOfDomain(zones.value, domain.value.id).then((_) => {
-    getZones(0);
-  });
+  requestBatchPushZoneOfDomain(zones.value, domain.value.id)
+    .then((_) => {
+      getZones(0);
+      ElMessage.success("成功保存区域信息");
+    })
+    .catch((e) => {
+      ElMessage.error("保存区域信息失败" + String(e.response.data));
+    });
 }
 
 function createZone() {

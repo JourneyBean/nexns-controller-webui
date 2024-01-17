@@ -87,4 +87,13 @@ export const recordTypeMappings = {
   NSAPPTR: "NSAP-PTR",
 } as const;
 
+export const supportedTypeMappings = {
+  A: "A",
+  AAAA: "AAAA",
+  CNAME: "CNAME",
+  NS: "NS",
+  MX: "MX",
+  TXT: "TXT",
+};
+
 export type RecordType = keyof typeof recordTypeMappings;

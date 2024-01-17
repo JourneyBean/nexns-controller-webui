@@ -55,10 +55,10 @@ async function saveAll() {
     try {
       await requestBatchPushRRsetDumpOfZone(zone.rrsets, zone.id);
 
-      ElMessage.success(`更新zone ${zone.name} 成功`);
+      ElMessage.success(`保存zone ${zone.name} 成功`);
       rrsetsOriginal.value[zone.id] = JSON.stringify(zone.rrsets);
     } catch (error) {
-      ElMessage.error(`更新zone ${zone.name} 失败`);
+      ElMessage.error(`保存zone ${zone.name} 失败`);
       hasError = true;
     }
   }

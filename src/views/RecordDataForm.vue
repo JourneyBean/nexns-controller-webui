@@ -28,7 +28,7 @@ const record = computed({
   <div>
     <el-input-number v-model="record.ttl" />
   </div>
-  <div>
+  <div class="grow">
     <el-input
       v-if="['A', 'AAAA', 'CNAME', 'NS', 'SRV', 'SOA'].includes(props.type)"
       v-model="record.text"

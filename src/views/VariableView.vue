@@ -50,6 +50,7 @@ function saveVariables() {
       requestApplyVariablesOfUser(userStore.user.id)
         .then((_) => {
           userVariableStore.update();
+          ElMessage.success("成功保存并校验");
         })
         .catch((_) => {
           ElMessage.error("表达式错误");

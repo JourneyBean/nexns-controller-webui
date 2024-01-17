@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
 import { IRRsetDump } from "@/modules/name";
-import { recordTypeMappings } from "@/modules/dns";
+import { supportedTypeMappings } from "@/modules/dns";
 import { VueDraggable } from "vue-draggable-plus";
 import {
   ElButton,
@@ -124,7 +124,7 @@ function deleteRecord(rrset: IRRsetDump, index: number) {
           >
             <div
               v-for="(_, index) in rrset.records"
-              class="flex flex-row hover:bg-blue-500 hover:bg-opacity-10 items-center py-2 rounded-lg space-x-2"
+              class="flex flex-row hover:bg-blue-500 hover:bg-opacity-10 items-center py-2 rounded-lg space-x-2 pr-2"
             >
               <div>
                 <span
@@ -144,10 +144,12 @@ function deleteRecord(rrset: IRRsetDump, index: number) {
               </span>
             </div>
           </VueDraggable>
-          <div>
-            <el-button @click="addRecord(rrset)">
-              <el-icon><Plus /></el-icon>
-            </el-button>
+          <div
+            class="pr-2 text-center hover:bg-blue-500/10 opacity-30 hover:opacity-70 rounded-md border p-1 ml-12 mr-2"
+            style="cursor: pointer"
+            @click="addRecord(rrset)"
+          >
+            <el-icon><Plus /></el-icon>
           </div>
         </div>
         <div>
@@ -159,7 +161,7 @@ function deleteRecord(rrset: IRRsetDump, index: number) {
         </div>
       </div>
     </VueDraggable>
-    <div class="flex flex-row min-h-16 py-2 space-x-2">
+    <div class="flex flex-row min-h-16 py-2 space-x-2 px-12">
       <span>
         <el-input v-model="addRRsetData.name" placeholder="请输入子域" />
       </span>
@@ -169,7 +171,7 @@ function deleteRecord(rrset: IRRsetDump, index: number) {
         placeholder="请选择类型"
       >
         <el-option
-          v-for="(k, v) in recordTypeMappings"
+          v-for="(k, v) in supportedTypeMappings"
           :key="k"
           :label="v"
           :value="k"

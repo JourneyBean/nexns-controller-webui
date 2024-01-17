@@ -33,10 +33,15 @@ function getDomain() {
 
 function saveDomain() {
   if (!domain.value) return;
-  requestUpdateDomain(domain.value).then((data) => {
-    domain.value = data.data;
-    userDomainsStore.update();
-  });
+  requestUpdateDomain(domain.value)
+    .then((data) => {
+      domain.value = data.data;
+      ElMessage.success("成功保存域名信息");
+      userDomainsStore.update();
+    })
+    .catch((e) => {
+      ElMessage.error("发布失败" + String(e.response.data));
+    });
 }
 
 function applyDomain() {
