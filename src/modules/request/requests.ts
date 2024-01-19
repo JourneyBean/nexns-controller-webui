@@ -6,7 +6,7 @@ export function getControllerUrl(
   pk?: string | number,
   action?: string
 ) {
-  let url = `http://localhost:8000/api/v1/${name}/`;
+  let url = `${import.meta.env.VITE_NEXNS_API_BASE_URL}${name}/`;
   if (pk != null) {
     url = url + String(pk) + "/";
   }
