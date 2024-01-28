@@ -78,7 +78,8 @@ export function requestBatchPushZoneOfDomain(
   zones: IZone[],
   domainId: IDomain["id"]
 ) {
-  return requestControllerApi<IZone[]>("put", "zone-update", {
+  return requestControllerApi<IZone[]>("put", "zone", {
+    action: "bulk-update",
     params: {
       domain: domainId,
     },
@@ -128,7 +129,8 @@ export function requestBatchPushRRsetDumpOfZone(
   rrsets: IRRsetDump[],
   zoneId: IZone["id"]
 ) {
-  return requestControllerApi<IZone[]>("put", "rrsets-update", {
+  return requestControllerApi<IZone[]>("put", "rrsets", {
+    action: "bulk-update",
     params: {
       zone: zoneId,
     },
@@ -172,5 +174,8 @@ export function requestDeleteRecordData(recordData: IRecordData) {
 }
 
 export function requestDumpDomain(domainId: IDomain["id"]) {
-  return requestControllerApi<IDomainDump>("get", "dump", { pk: domainId });
+  return requestControllerApi<IDomainDump>("get", "domain", {
+    action: "dump",
+    pk: domainId,
+  });
 }
