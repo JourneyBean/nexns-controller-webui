@@ -34,17 +34,17 @@ const domain = ref<IDomain>({
 /* functions */
 
 function save() {
+  if (!userStore.user) return;
   domain.value.user = userStore.user.id;
-  requestCreateDomainOfUser(domain.value, userStore.user.id).then((data) => {
-    userDomainsStore
-      .update()
-      .then(() => {
+  requestCreateDomainOfUser(domain.value, userStore.user.id)
+    .then((data) => {
+      userDomainsStore.update().then(() => {
         router.push(getDomainPageUrl(data.data.id));
-      })
-      .catch((e) => {
-        ElMessage.error("创建域名失败" + String(e.response.data));
       });
-  });
+    })
+    .catch((e) => {
+      ElMessage.error("创建域名失败" + JSON.stringify(e.response.data));
+    });
 }
 </script>
 
@@ -57,7 +57,7 @@ function save() {
     </div>
 
     <div class="pl-28">
-      <el-button type="primary" plain>保存</el-button>
+      <el-button type="primary" plain @click="save">保存</el-button>
     </div>
   </div>
 </template>

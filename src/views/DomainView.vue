@@ -32,7 +32,7 @@ function getDomain() {
 }
 
 function saveDomain() {
-  if (!domain.value) return;
+  if (!domain.value) return Promise.reject();
   requestUpdateDomain(domain.value)
     .then((data) => {
       domain.value = data.data;
@@ -40,7 +40,7 @@ function saveDomain() {
       userDomainsStore.update();
     })
     .catch((e) => {
-      ElMessage.error("发布失败" + String(e.response.data));
+      ElMessage.error("保存失败" + String(e.response.data));
     });
 }
 
