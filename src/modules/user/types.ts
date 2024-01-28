@@ -3,3 +3,7 @@ export interface IUser {
   username: string;
   email: string;
 }
+
+export interface ICsrfTokenResponse {
+  csrf_token: string;
+}

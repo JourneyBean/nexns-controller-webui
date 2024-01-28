@@ -1,5 +1,6 @@
 import axios, { AxiosRequestConfig } from "axios";
 import { IRequestConfig } from "./types";
+import { useCsrfTokenStore } from "../user";
 
 export function getControllerUrl(
   name: string,
@@ -25,10 +26,16 @@ export function requestControllerApi<T>(
     throw "When using patch, put or delete, pk must be provided.";
   }
 
+  const csrfTokenStore = useCsrfTokenStore();
+
   return axios.request<T>({
     method: method,
     url: getControllerUrl(name, config?.pk, config?.action),
     params: config?.params,
     data: config?.data,
+    withCredentials: true,
+    headers: {
+      "X-CSRFToken": csrfTokenStore.csrfToken,
+    },
   });
 }

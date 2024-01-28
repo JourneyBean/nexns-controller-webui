@@ -13,12 +13,14 @@ export const useUserVariableStore = defineStore("variables", () => {
   const variables = ref<IVariable[]>([]);
 
   const get = () => {
+    if (!userStore.user) return Promise.reject();
     return requestListVariablesOfUser(userStore.user.id).then((data) => {
       variables.value = data.data;
     });
   };
 
   const update = () => {
+    if (!userStore.user) return Promise.reject();
     return requestApplyVariablesOfUser(userStore.user.id).then((data) => {
       variables.value = data.data;
     });

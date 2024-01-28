@@ -10,6 +10,7 @@ export const useUserDomainsStore = defineStore("domains", () => {
   const domains = ref<IDomain[]>([]);
 
   const update = () => {
+    if (!userStore.user) return Promise.reject();
     return requestGetDomainsOfUser(userStore.user.id).then((data) => {
       domains.value = data.data;
     });

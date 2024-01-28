@@ -45,8 +45,10 @@ function addVariable() {
 }
 
 function saveVariables() {
+  if (!userStore.user) return;
   requestBulkUpdateVariableOfUser(variables.value, userStore.user.id)
     .then((_) => {
+      if (!userStore.user) return;
       requestApplyVariablesOfUser(userStore.user.id)
         .then((_) => {
           userVariableStore.update();

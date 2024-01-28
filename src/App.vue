@@ -3,7 +3,7 @@ import "./style.css";
 import "element-plus/dist/index.css";
 import { ref, watch } from "vue";
 import { useRouter } from "vue-router";
-import { useUserStore, IUser } from "@/modules/user";
+import { useUserStore } from "@/modules/user";
 import { useUserDomainsStore } from "@/modules/name";
 import {
   getHomePageUrl,
@@ -40,14 +40,6 @@ const menu = ref();
 watch(userDomainsStore, () => {
   menu.value.open("manage-records");
 });
-
-// TODO: no user auth
-setTimeout(() => {
-  let user = JSON.parse(JSON.stringify(userStore.user)) as IUser;
-  // @ts-ignore
-  user.id = 1;
-  userStore.user = user;
-}, 50);
 </script>
 
 <template>
@@ -58,7 +50,7 @@ setTimeout(() => {
         style="z-index: 1000"
       >
         <p class="grow text-lg font-bold">NexNS Controller WebUI</p>
-        <p class="text-sm text-gray-500">User ID: {{ userStore.user.id }}</p>
+        <p class="text-sm text-gray-500">User ID: {{ userStore.user?.id }}</p>
       </el-header>
 
       <el-container class="relative">
