@@ -27,7 +27,7 @@ export function requestBulkUpdateVariableOfUser(
 ) {
   return requestControllerApi<IVariable[]>("put", "variable", {
     params: { user: userId },
-    action: "bulk",
+    action: "bulk-update",
     data: variables,
   });
 }
