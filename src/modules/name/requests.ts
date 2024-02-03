@@ -129,7 +129,7 @@ export function requestBatchPushRRsetDumpOfZone(
   rrsets: IRRsetDump[],
   zoneId: IZone["id"]
 ) {
-  return requestControllerApi<IZone[]>("put", "rrsets", {
+  return requestControllerApi<IZone[]>("put", "rrset", {
     action: "bulk-update",
     params: {
       zone: zoneId,
